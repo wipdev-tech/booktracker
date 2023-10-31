@@ -6,7 +6,10 @@ import (
 )
 
 func main() {
+	handleCSS := http.StripPrefix("/css/", http.FileServer(http.Dir("templates/css/")))
+
 	http.HandleFunc("/", handleIndex)
+	http.Handle("/css/", handleCSS)
 	http.ListenAndServe(":8000", nil)
 }
 
